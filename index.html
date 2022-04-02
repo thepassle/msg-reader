@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ededed" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192.png">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <base href="/">
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ededed;
+    }
+  </style>
+  <title>Upload a .msg file</title>
+</head>
+
+<body>
+  <script src="DataStream.js"></script>
+  <script src="msg.reader.js"></script>
+  <script>
+    if('serviceWorker' in navigator) {
+      let refreshing = false;
+  
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+        window.location.reload();
+        refreshing = true;
+      });
+    };
+  </script>
+
+  <msg-reader></msg-reader>
+  <script type="module" src="./src/msg-reader.js"></script>
+</body>
+
+</html>
